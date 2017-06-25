@@ -2,6 +2,7 @@
 #define UKF_H
 
 #include "measurement_package.h"
+#include "tools.h"
 #include "Eigen/Dense"
 #include <vector>
 #include <string>
@@ -72,6 +73,7 @@ public:
   double lambda_;
 
 	double NIS_radar_,NIS_lidar_;
+	Tools tool_;
 
   /**
    * Constructor

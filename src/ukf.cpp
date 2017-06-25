@@ -143,6 +143,12 @@ void UKF::UpdateLidar(MeasurementPackage meas_package) {
 
 	VectorXd temp = meas_package.raw_measurements_ - z_pred;
 	NIS_lidar_ = temp.transpose() * S.inverse() * temp;
+//	ofstream myfile("NIS_lidar",std::ofstream::app);
+//	if (myfile.is_open()){
+//		myfile<< NIS_lidar_ << endl;
+//		myfile.close();
+//	}
+	tool_.updateGraph(NIS_lidar_,Tools::LASER);
 }
 
 /**
@@ -166,6 +172,12 @@ void UKF::UpdateRadar(MeasurementPackage meas_package) {
 
 	VectorXd temp = meas_package.raw_measurements_ - z_pred;
 	NIS_radar_ = temp.transpose() * S.inverse() * temp;
+//	ofstream myfile("NIS_radar",std::ofstream::app);
+//	if (myfile.is_open()){
+//		myfile<< NIS_radar_ << endl;
+//		myfile.close();
+//	}
+	tool_.updateGraph(NIS_radar_,Tools::RADAR);
 }
 
 void UKF::AugmentedSigmaPoints(void) {
